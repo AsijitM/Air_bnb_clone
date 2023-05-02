@@ -1,3 +1,5 @@
+'use client';
+
 import { FC } from 'react';
 import { IconType } from 'react-icons/lib';
 
@@ -20,6 +22,8 @@ const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
+      onClick={onClick}
+      disabled={disabled}
       className={`
           relative
           disabled:opacity-70
@@ -42,8 +46,8 @@ const Button: FC<ButtonProps> = ({
           size={24}
           className="
               absolute
-              top-4
-              left-3"
+              top-2
+              left-4"
         />
       )}
       {label}
