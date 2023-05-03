@@ -8,3 +8,5 @@ const ToasterProvider = () => {
 };
 
 export default ToasterProvider;
+
+//React toaster created
