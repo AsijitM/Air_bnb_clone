@@ -1,10 +1,11 @@
 import ClientOnly from './components/ClientOnly';
 import Modal from './components/Modals/Modal';
-import RegisterModal from './components/Modals/RegisterMOdal';
+import RegisterModal from './components/Modals/RegisterModal';
 
 import Navbar from './components/navbar/Navbar';
 import './globals.css';
 import { Nunito } from 'next/font/google';
+import ToasterProvider from './providers/ToasterProvider';
 
 const inter = Nunito({ subsets: ['latin'] });
 
@@ -21,7 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <RegisterModal/>
+        <ToasterProvider/>
+        <RegisterModal />
         {/* <Modal actionLabel="Submit" title="hello World" isOpen /> */}
         <Navbar />
         {children}
