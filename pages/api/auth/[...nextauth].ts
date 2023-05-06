@@ -25,7 +25,8 @@ export const authOptions: AuthOptions = {
         password: { label: 'password', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || credentials?.password) {
+        //check the credentials
+        if (!credentials?.email || !credentials?.password) {
           throw new Error('Invalid credentials');
         }
         //prisma schema lets you directly search through the whole DB using the mongoDB commands
@@ -36,7 +37,7 @@ export const authOptions: AuthOptions = {
         });
         //If the user doesn't exist or the user password isnt hashed that means the user isnt properly added to the account list of DB
         if (!user || !user?.hashedPassword) {
-          throw new Error('Invalid Credential');
+          throw new Error('Invalid Credentials');
         }
 
         //check if the password is correct
