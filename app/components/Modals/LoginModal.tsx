@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import axios from 'axios';
 import { signIn } from 'next-auth/react';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
@@ -34,10 +33,15 @@ const LoginModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-
+    // signIn is imported from next-auth/react
+    // Basically we are spreading the 'credentials' data as we have made in the [...nextauth].ts
+    // his means that verify with the 'credentials' wrt to the data just provided in form, we are sending the data from the forms to the [...nextauth].ts
+    // where it will be verified using mongoDB find query and if it is found out, it will return a user
     signIn('credentials', {
+      //data is passed from the form using react form hooks
       ...data,
-      redirect: false,
+      redirect: false, //wouldnt redirect upon successful or unsuccessful login
+      //callback is the signIn reponse we receive
     }).then((callback) => {
       setIsLoading(false);
 

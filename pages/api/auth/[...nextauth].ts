@@ -19,11 +19,15 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
+      //credentials is a variable name where we store our credentials or mentioned data like email and password
       name: 'credentials',
+      // here the type of credentials are defined clearly
       credentials: {
         email: { label: 'email', type: 'text' },
         password: { label: 'password', type: 'password' },
       },
+
+      //authorize function authorizes the credentials
       async authorize(credentials) {
         //check the credentials
         if (!credentials?.email || !credentials?.password) {
@@ -35,7 +39,7 @@ export const authOptions: AuthOptions = {
             email: credentials.email,
           },
         });
-        //If the user doesn't exist or the user password isnt hashed that means the user isnt properly added to the account list of DB
+        //If the user doesn't exist or the user password isn't hashed that means the user isnt properly added to the account list of DB
         if (!user || !user?.hashedPassword) {
           throw new Error('Invalid Credentials');
         }
