@@ -23,7 +23,12 @@ export default async function getCurrentUser() {
 
     if (!currentUser) return null;
 
-    return currentUser;
+    return {
+      ...currentUser,
+      createdAt: currentUser.createdAt.toISOString(),
+      updatedAt: currentUser.updatedAt.toISOString(),
+      emailVerified: currentUser.emailVerified?.toISOString() || null,
+    };
   } catch (error: any) {
     //this is not a API call, this is a direct communication to our database through server component
     return null;
