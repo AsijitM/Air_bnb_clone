@@ -5,6 +5,7 @@ import { TbBeach } from 'react-icons/tb';
 import { GiWindmill } from 'react-icons/gi';
 import { MdOutlineVilla } from 'react-icons/md';
 import CatagoryBox from '../CatagoryBox';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export const catagories = [
   {
@@ -25,7 +26,17 @@ export const catagories = [
 ];
 
 const Catagories = () => {
-    c
+  //add a way so that the catagory button can read from thr URL query string and show selected option
+  const params = useSearchParams();
+  //extract the catagories
+  const catagory = params?.get('catagory');
+  const pathname = usePathname();
+
+  const isMainPage = pathname === '/';
+  //if we are not on main page we are not gonna return anything
+  if (!isMainPage) {
+    return null;
+  }
   return (
     <Container>
       <div
@@ -42,7 +53,8 @@ const Catagories = () => {
           <CatagoryBox
             key={item.label}
             label={item.label}
-            description={item.description}
+            //we will make sure a catagory is selected by checking if is is in the params
+            selected={catagory === item.label}
             icon={item.icon}
           />
         ))}
