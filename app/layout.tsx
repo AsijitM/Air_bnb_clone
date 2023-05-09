@@ -8,6 +8,7 @@ import { Nunito } from 'next/font/google';
 import ToasterProvider from './providers/ToasterProvider';
 import LoginModal from './components/Modals/LoginModal';
 import getCurrentUser from './actions/getCurrentUser';
+import RentModal from './components/Modals/RentModal';
 
 const inter = Nunito({ subsets: ['latin'] });
 
@@ -20,13 +21,14 @@ export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-  }) {
+}) {
   //get the CurrentUser data
   const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={inter.className}>
         <ToasterProvider />
+        <RentModal />
         <RegisterModal />
         <LoginModal />
         {/* <Modal actionLabel="Submit" title="hello World" isOpen /> */}
