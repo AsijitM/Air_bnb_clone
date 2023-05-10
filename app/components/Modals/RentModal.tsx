@@ -7,6 +7,7 @@ import Heading from '../Heading';
 import { catagories } from '../navbar/Catagories';
 import CategoryInput from '../inputs/CategoryInput';
 import { FieldValues, useForm } from 'react-hook-form';
+import CountrySelect from '../inputs/CountrySelect';
 
 //WE gonna select the number of rooms,bathrooms,guests etc
 enum STEPS {
@@ -99,7 +100,8 @@ const RentModal = () => {
         {catagories.map((item) => (
           <div key={item.label} className="col-span-1">
             <CategoryInput
-              onClick={(category) => setCustomValue('category',category)}
+              //setCustomValue(id: string, value: any)
+              onClick={(category) => setCustomValue('category', category)}
               selected={category === item.label}
               label={item.label}
               icon={item.icon}
@@ -110,11 +112,23 @@ const RentModal = () => {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Where is your Place located"
+          subtitle="Help Guests to find you"
+        />
+        <CountrySelect/>
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={rentModal.onClose}
+      onSubmit={onNext}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       //will check if he is on the first step, if yes there is no back option else we will give onBack
