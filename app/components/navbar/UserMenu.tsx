@@ -15,7 +15,6 @@ interface userMenuProps {
 }
 
 const UserMenu: FC<userMenuProps> = ({ currentUser }) => {
-
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
@@ -32,9 +31,8 @@ const UserMenu: FC<userMenuProps> = ({ currentUser }) => {
     }
 
     //Open rent model
-    rentModal.onOpen()
-
-  }, [currentUser,loginModal,rentModal]);
+    rentModal.onOpen();
+  }, [currentUser, loginModal, rentModal]);
 
   return (
     <div
@@ -104,7 +102,7 @@ const UserMenu: FC<userMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={() => {}} label="My Favourites" />
                 <MenuItem onClick={() => {}} label="My Reservations" />
                 <MenuItem onClick={() => {}} label="My Properties" />
-                <MenuItem onClick={() => {}} label="Airbnb my home!" />
+                <MenuItem onClick={rentModal.onOpen} label="Airbnb my home!" />
                 <MenuItem onClick={() => signOut()} label="Logout" />
               </>
             ) : (
