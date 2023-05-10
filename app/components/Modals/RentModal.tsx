@@ -45,8 +45,15 @@ const RentModal = () => {
   });
 
   //because we have made some changes and made the categroryInput a new component
-
   const category = watch('category');
+
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
 
   //for increase or decrease the count
   const onBack = () => {
@@ -92,8 +99,8 @@ const RentModal = () => {
         {catagories.map((item) => (
           <div key={item.label} className="col-span-1">
             <CategoryInput
-              onClick={() => {}}
-              selected={false}
+              onClick={(category) => setCustomValue('category',category)}
+              selected={category === item.label}
               label={item.label}
               icon={item.icon}
             />
