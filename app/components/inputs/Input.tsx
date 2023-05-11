@@ -38,6 +38,7 @@ const Input: FC<InputProps> = ({
             "
         />
       )}
+         {/* register your input into the hook by invoking the "register" function */}
       <input
         type={type}
         id={id}
