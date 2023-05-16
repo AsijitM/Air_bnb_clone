@@ -10,12 +10,14 @@ import React, { FC, MouseEvent, useCallback, useMemo } from 'react';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import HeartButton from '../HeartButton';
+import Button from '../Button';
 
 interface ListingCardProps {
   data: Listing;
   reservation?: Reservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
+  actionLabel?: string;
   actionId?: string;
   currentUser?: safeUser | null;
 }
@@ -24,6 +26,7 @@ const ListingCard: FC<ListingCardProps> = ({
   reservation,
   onAction,
   disabled,
+  actionLabel,
   actionId = '',
   currentUser,
 }) => {
@@ -33,7 +36,7 @@ const ListingCard: FC<ListingCardProps> = ({
   const locaiton = getByValue(data.locationValue);
   //handlecancel used in trip reservation, and listing modifications
   const handleCancel = useCallback(
-    (e: MouseEvent<HTMLBodyElement>) => {
+    (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
 
       if (disabled) return;
@@ -96,12 +99,30 @@ const ListingCard: FC<ListingCardProps> = ({
             "
           />
           <div className="absolute top-3 right-3">
-            <HeartButton
-              listingId={data.id} c
-              urrentUser={currentUser}
-            />
+            <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
+        <div className="font-semibold text-lg">
+          {locaiton?.region}, {locaiton?.label}
+        </div>
+        <div className="font-light text-neutral-500">
+          {reservationDate || data.category}
+        </div>
+        <div className="flex flex-row items-center gap-1">
+          <div className="font-semibold">
+            {/* this is the price we declared before totalPrice or price */}$
+            {price}
+          </div>
+          {!reservation && <div className="font-light"> night</div>}
+        </div>
+        {onAction && actionLabel && (
+          <Button
+            disabled={disabled}
+            small
+            label={actionLabel}
+            onClick={handleCancel}
+          />
+        )}
       </div>
     </div>
   );
