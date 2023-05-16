@@ -3,7 +3,7 @@
 interface HeadingProps {
   title: string;
   subtitle?: string;
-  center?: string;
+  center?: boolean;
 }
 
 import React, { FC } from 'react';
