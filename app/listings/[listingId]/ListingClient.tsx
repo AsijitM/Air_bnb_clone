@@ -1,3 +1,7 @@
+'use client'
+
+import Container from '@/app/components/Container';
+import ListingHead from '@/app/components/listings/ListingHead';
 import { catagories } from '@/app/components/navbar/Catagories';
 import { SafeListings, safeUser } from '@/app/types';
 
@@ -18,9 +22,21 @@ const ListingClient: FC<ListingClientProps> = ({ listing, currentUser }) => {
     return catagories.find((item) => item.label === listing.category);
   }, [listing.category]);
 
-    
-
-  return <div>ListingClient</div>;
+  return (
+    <Container>
+      <div className="mx-auto max-w-screen-lg">
+        <div className="flex flex-col gap-6">
+          <ListingHead
+            title={listing.title}
+            imageSrc={listing.imageSrc}
+            locationValue={listing.locationValue}
+            id={listing.id}
+            currentUser={currentUser}
+          />
+        </div>
+      </div>
+    </Container>
+  );
 };
 
 export default ListingClient;
