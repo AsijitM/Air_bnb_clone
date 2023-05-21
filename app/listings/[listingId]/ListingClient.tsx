@@ -43,16 +43,15 @@ const ListingClient: FC<ListingClientProps> = ({
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
-    reservations.forEach((reservation) => {
+    reservations.forEach((reservation: any) => {
       const range = eachDayOfInterval({
         start: new Date(reservation.startDate),
         end: new Date(reservation.endDate),
       });
       //spread the range of dates between start and end
       dates = [...dates, ...range];
-
-      return dates;
     });
+    return dates;
   }, [reservations]);
 
   const [isLoading, setIsLoading] = useState(false);
