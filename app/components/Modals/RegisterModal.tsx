@@ -37,6 +37,7 @@ const RegisterModal = () => {
     axios
       .post('/api/register', data)
       .then(() => {
+        loginModal.onOpen();
         registerModal.onClose();
       })
       .catch((err) => {

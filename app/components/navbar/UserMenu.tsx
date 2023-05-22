@@ -104,7 +104,10 @@ const UserMenu: FC<userMenuProps> = ({ currentUser }) => {
                   onClick={() => router.push('/trips')}
                   label="My Trips"
                 />
-                <MenuItem onClick={() => {}} label="My Favourites" />
+                <MenuItem
+                  onClick={() => router.push('/favorites')}
+                  label="My Favourites"
+                />
                 <MenuItem
                   onClick={() => router.push('/reservations')}
                   label="My Reservations"
