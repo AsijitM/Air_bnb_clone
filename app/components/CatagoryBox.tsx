@@ -5,13 +5,13 @@ import { IconType } from 'react-icons';
 import { useCallback } from 'react';
 import qs from 'query-string';
 
-interface CatagoryBoxProps {
+interface CategoryBoxProps {
   icon: IconType;
   label: string;
   selected?: boolean;
 }
 //icon:Icon we are using so that we can use that as an alias and can use it as a component
-const CatagoryBox: React.FC<CatagoryBoxProps> = ({
+const CategoryBox: React.FC<CategoryBoxProps> = ({
   icon: Icon,
   label,
   selected,
@@ -35,12 +35,12 @@ const CatagoryBox: React.FC<CatagoryBoxProps> = ({
     //this will combine them together and add a new catagory to that using label
     const updatedQuery: any = {
       ...currentQuery,
-      catagory: label,
+      category: label,
     };
 
     // the catagory is already selected we remove the catagory from the query, it will only remove the catagory
-    if (params?.get('catagory') === label) {
-      delete updatedQuery.catagory;
+    if (params?.get('category') === label) {
+      delete updatedQuery.category;
     }
 
       //pass the new query which we manupulated
@@ -85,4 +85,4 @@ const CatagoryBox: React.FC<CatagoryBoxProps> = ({
   );
 };
 
-export default CatagoryBox;
+export default CategoryBox;

@@ -98,7 +98,7 @@ const ListingClient: FC<ListingClientProps> = ({
     }
   }, [dateRange.startDate, dateRange.endDate, listing.price]);
   //this will give back the icon and details by matching the label in the user preference
-  const catagory = useMemo(() => {
+  const category = useMemo(() => {
     return catagories.find((item) => item.label === listing.category);
   }, [listing.category]);
 
@@ -124,7 +124,7 @@ const ListingClient: FC<ListingClientProps> = ({
           >
             <ListingInfo
               user={listing.user}
-              category={catagory}
+              category={category}
               description={listing.description}
               roomCount={listing.roomCount}
               guestCount={listing.guestCount}

@@ -101,7 +101,7 @@ const Catagories = () => {
   //add a way so that the catagory button can read from thr URL query string and show selected option
   const params = useSearchParams();
   //extract the catagories
-  const catagory = params?.get('catagory');
+  const category = params?.get('category');
   const pathname = usePathname();
 
   const isMainPage = pathname === '/';
@@ -126,7 +126,7 @@ const Catagories = () => {
             key={item.label}
             label={item.label}
             //we will make sure a catagory is selected by checking if is is in the params
-            selected={catagory === item.label}
+            selected={category === item.label}
             icon={item.icon}
           />
         ))}

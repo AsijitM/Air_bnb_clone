@@ -9,6 +9,7 @@ import ToasterProvider from './providers/ToasterProvider';
 import LoginModal from './components/Modals/LoginModal';
 import getCurrentUser from './actions/getCurrentUser';
 import RentModal from './components/Modals/RentModal';
+import SearchModal from './components/Modals/searchModal';
 
 const inter = Nunito({ subsets: ['latin'] });
 
@@ -28,6 +29,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ToasterProvider />
+        <SearchModal/>
         <RentModal />
         <RegisterModal />
         <LoginModal />
