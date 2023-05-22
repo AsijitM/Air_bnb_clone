@@ -1,12 +1,16 @@
-import { Inter } from 'next/font/google';
 import Container from './components/Container';
 import EmptyState from './components/EmptyState';
-import getListings from './actions/getLisitngs';
 import ListingCard from './components/listings/ListingCard';
+
+import getListings, { IListingsParams } from './actions/getLisitngs';
 import getCurrentUser from './actions/getCurrentUser';
 
-export default async function Home() {
-  const listings = await getListings();
+interface HomeProps {
+  searchParams: IListingsParams;
+}
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
   const isEmpty = true;
 
@@ -40,4 +44,5 @@ export default async function Home() {
       </div>
     </Container>
   );
-}
+};
+export default Home;
