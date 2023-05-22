@@ -25,29 +25,29 @@ export default async function getReservations(params: IParams) {
 
     //if we send the authorId ,author can see the resvations made on his property by the users
     if (authorId) {
-      query.authorId = { userId: authorId };
+      query.listing = { userId: authorId };
     }
 
-    const reservations = await prisma.reservation.findMany({
-      where: query,
-      include: {
-        listing: true,
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
+   const reservations = await prisma.reservation.findMany({
+     where: query,
+     include: {
+       listing: true,
+     },
+     orderBy: {
+       createdAt: 'desc',
+     },
+   });
 
-    const safeReservations = reservations.map((reservation) => ({
-      ...reservation,
-      createdAt: reservation.createdAt.toISOString(),
-      startDate: reservation.startDate.toISOString(),
-      endDate: reservation.endDate.toISOString(),
-      listing: {
-        ...reservation.listing,
-        createdAt: reservation.listing.createdAt.toISOString(),
-      },
-    }));
+   const safeReservations = reservations.map((reservation) => ({
+     ...reservation,
+     createdAt: reservation.createdAt.toISOString(),
+     startDate: reservation.startDate.toISOString(),
+     endDate: reservation.endDate.toISOString(),
+     listing: {
+       ...reservation.listing,
+       createdAt: reservation.listing.createdAt.toISOString(),
+     },
+   }));
 
     return safeReservations;
   } catch (error: any) {
